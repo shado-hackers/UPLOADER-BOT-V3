@@ -182,7 +182,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
-                message_id=update.message.message.id
+                message_id=message.id
             )
         else:
             is_w_f = False
@@ -198,7 +198,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
-                message_id=update.message.message.id
+                message_id=message.id
             )
 
             # ref: message from @Sources_codes
@@ -210,7 +210,7 @@ async def youtube_dl_call_back(bot, update):
                     document=download_directory,
                     thumb=thumbnail,
                     caption=description,
-                    reply_to_message_id=update.message.reply_to_message.message.id,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -230,7 +230,7 @@ async def youtube_dl_call_back(bot, update):
                     height=height,
                     supports_streaming=True,
                     thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message.id,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -248,7 +248,7 @@ async def youtube_dl_call_back(bot, update):
                     parse_mode="HTML",
                     duration=duration,
                     thumb=thumbnail,
-                    reply_to_message_id=update.message.reply_to_message.message.id,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -265,7 +265,7 @@ async def youtube_dl_call_back(bot, update):
                     duration=duration,
                     length=width,
                     thumb=thumbnail,
-                    reply_to_message_id=update.message.reply_to_message.message.id,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
@@ -285,6 +285,6 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                 chat_id=update.message.chat.id,
-                message_id=update.message.message.id,
+                message_id=update.message.message_id,
                 disable_web_page_preview=True
             )
