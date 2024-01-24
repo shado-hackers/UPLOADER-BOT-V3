@@ -76,9 +76,9 @@ async def button(bot, update):
     elif "close" in update.data:
         await update.message.delete(True)
     elif "|" in update.data:
-        await youtube_dl_call_back(bot, update)
+        await youtube_dl_call_back(message, update)
     elif "=" in update.data:
-        await ddl_call_back(bot, update)
+        await ddl_call_back(message, update)
 
     else:
         await update.message.delete()
