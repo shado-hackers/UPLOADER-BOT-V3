@@ -41,7 +41,7 @@ async def youtube_dl_call_back(bot, update):
     except (FileNotFoundError) as e:
         await bot.delete_messages(
             chat_id=update.message.chat.id,
-            message_ids=update.message.message.id,
+            message_ids=update.id,
             revoke=True
         )
         return False
