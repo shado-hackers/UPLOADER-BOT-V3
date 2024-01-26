@@ -8,7 +8,7 @@ from plugins.youtube_dl_button import youtube_dl_call_back
 from plugins.settings.settings import OpenSettings
 from plugins.translation import Translation
 from pyrogram import Client, types
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
 from plugins.database.database import db
 import logging
 logging.basicConfig(level=logging.DEBUG,
