@@ -41,7 +41,7 @@ async def youtube_dl_call_back(bot, update):
     except (FileNotFoundError) as e:
         await bot.delete_messages(
             chat_id=update.message.chat.id,
-            message_ids=update.id,
+            message_ids=message_id,
             revoke=True
         )
         return False
@@ -90,7 +90,7 @@ async def youtube_dl_call_back(bot, update):
     await bot.edit_message_text(
         text=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
-        message_id=update.id
+        message_id=message_id
     )
     description = Translation.CUSTOM_CAPTION_UL_FILE
     if "fulltitle" in response_json:
@@ -182,7 +182,7 @@ async def youtube_dl_call_back(bot, update):
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
                 text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
-                message_id=update.id
+                message_id=message_id
             )
         else:
             is_w_f = False
