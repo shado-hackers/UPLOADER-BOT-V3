@@ -1,5 +1,3 @@
-# LISA-KOREA | @LISA_FAN_LK
-
 import os
 from functions.display_progress import progress_for_pyrogram, humanbytes
 from plugins.config import Config
@@ -8,12 +6,12 @@ from plugins.youtube_dl_button import youtube_dl_call_back
 from plugins.settings.settings import OpenSettings
 from plugins.translation import Translation
 from pyrogram import Client, types
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.database import db
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(name)
 
 
 
@@ -74,9 +72,9 @@ async def button(bot, update):
         await update.message.delete(True)
 
     elif "|" in update.data:
-        await youtube_dl_call_back(message, update)
+        await youtube_dl_call_back(bot, update)
     elif "=" in update.data:
-        await ddl_call_back(message, update)
+        await ddl_call_back(bot, update)
 
     else:
         await update.message.delete()
