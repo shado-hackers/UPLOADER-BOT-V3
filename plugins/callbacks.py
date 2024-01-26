@@ -11,7 +11,8 @@ from plugins.database.database import db
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(name)
+logger = logging.getLogger(__name__)
+
 
 
 
