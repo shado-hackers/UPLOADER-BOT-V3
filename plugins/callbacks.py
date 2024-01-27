@@ -36,9 +36,10 @@ async def button(bot, update):
             reply_markup=Translation.ABOUT_BUTTONS,
             disable_web_page_preview=True
         )
-    elif update.data == "OpenSettings":
-        await update.answer()
-        await OpenSettings(update.message)
+    elif query.data == "openSettings":
+        await query.answer()
+        await OpenSettings(query.message)
+
     elif update.data == "showThumbnail":
         thumbnail = await db.get_thumbnail(update.from_user.id)
         if not thumbnail:
@@ -50,27 +51,25 @@ async def button(bot, update):
                                    types.InlineKeyboardButton("Delete Thumbnail",
                                                               callback_data="deleteThumbnail")
                                ]]))
-    elif update.data == "deleteThumbnail":
-        await db.set_thumbnail(update.from_user.id, None)
-        await update.answer("Okay, I deleted your custom thumbnail. Now I will apply default thumbnail.", show_alert=True)
-        await update.message.delete(True)
-    elif update.data == "setThumbnail":
-        await update.message.edit_text(
-            text=Translation.TEXT,
-            reply_markup=Translation.BUTTONS,
-            disable_web_page_preview=True
-        )
+    elif query.data == "deleteurlthumbnail":
+        await db.set_lazy_thumbnail(query.from_user.id, None)
+        await query.answer("**Okay baby, I deleted your custom thumbnail for url downloading. Now I will apply default thumbnail. ☑**", show_alert=True)
+        await query.message.delete(True)
+    elif query.data == "deleteThumbnail":
+        await db.set_thumbnail(query.from_user.id, None)
+        await query.answer("**Okay sweetie, I deleted your custom thumbnail for direct renaming. Now I will apply default thumbnail. ✅️**", show_alert=True)
+        await query.message.delete(True)
 
-    elif update.data == "triggerUploadMode":
-        await update.answer()
-        upload_as_doc = await db.get_upload_as_doc(update.from_user.id)
+    elif query.data == "triggerUploadMode":
+        await query.answer("Thank You ")
+        upload_as_doc = await db.get_upload_as_doc(query.from_user.id)
         if upload_as_doc:
-            await db.set_upload_as_doc(update.from_user.id, False)
+            await db.set_upload_as_doc(query.from_user.id, False)
         else:
-            await db.set_upload_as_doc(update.from_user.id, True)
-        await OpenSettings(update.message)
-    elif "close" in update.data:
-        await update.message.delete(True)
+            await db.set_upload_as_doc(query.from_user.id, True)
+        await OpenSettings(query.message)
+    elif "close" in query.data:
+        await query.message.delete(True)
     elif "|" in update.data:
         await youtube_dl_call_back(bot, update)
     elif "=" in update.data:
